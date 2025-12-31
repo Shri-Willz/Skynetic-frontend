@@ -41,9 +41,6 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Sign In
-            </a>
             <Link to="/join" className="cta-button text-sm">
               Join Skynetic
               <ArrowRight className="w-4 h-4" />

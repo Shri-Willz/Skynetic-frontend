@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Join = () => {
     const [formData, setFormData] = useState({
-        fullName: '',
+        name: '',
         email: '',
         skills: '',
         linkedin: '',
@@ -22,11 +22,21 @@ const Join = () => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit =async (e: React.FormEvent) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
         // Simulate network request
-        setTimeout(() => {
+        setTimeout(async() => {
+            const res = await fetch("https://app.skynetic.tech/api/register",{
+                method: "POST",
+                headers:{
+                    "content-type":"application/json",
+                },
+            body: JSON.stringify({
+                name: formData.name,
+                email: formData.email
+            })
+    })
             setIsSubmitted(true);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 1000);
