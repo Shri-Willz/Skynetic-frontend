@@ -22,21 +22,23 @@ const Join = () => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit =async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
         // Simulate network request
-        setTimeout(async() => {
-            const res = await fetch("https://app.skynetic.tech/api/register",{
+        setTimeout(async () => {
+            const res = await fetch("https://app.skynetic.tech/api/register", {
                 method: "POST",
-                headers:{
-                    "content-type":"application/json",
+                headers: {
+                    "content-type": "application/json",
                 },
-            body: JSON.stringify({
-                name: formData.name,
-                email: formData.email
-            })
-    })
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email
+                })
+            });
+            const data = await res.json();
+            console.log(data);
             setIsSubmitted(true);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 1000);
@@ -162,7 +164,7 @@ const Join = () => {
                                                 type="text"
                                                 id="fullName"
                                                 name="fullName"
-                                                value={formData.fullName}
+                                                value={formData.name}
                                                 onChange={handleChange}
                                                 placeholder="John Doe"
                                                 className="w-full px-4 py-3 rounded-xl bg-white/50 border border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none text-slate-900 placeholder:text-slate-400"
